@@ -1,0 +1,12 @@
+AppBundle_demo:
+    resource: "@AppBundle/Resources/config/routing/demo.yml"
+    prefix:   /
+
+AppBundle_front:
+    resource: "@AppBundle/Resources/config/routing/front.yml"
+    prefix:   /
+
+AppBundle_admin:
+    resource: "@AppBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+

@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Etch Akhtar -- Senior Web Developer -- ClearCutCoding
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Foundation 6
+    Silex
+    Apache Server Configs, jQuery, Modernizr

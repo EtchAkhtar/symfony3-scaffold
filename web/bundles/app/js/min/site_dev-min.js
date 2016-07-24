@@ -1,0 +1,2 @@
+$(document).ready(function(){$(document).ajaxComplete(function(o,e){e.getResponseHeader("x-debug-token")&&($(".sf-toolbarreset").remove(),$.get(window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/app_dev.php/_wdt/"+e.getResponseHeader("x-debug-token"),function(o){$("body").append(o)}))})});
+//# sourceMappingURL=./site_dev-min.js.map

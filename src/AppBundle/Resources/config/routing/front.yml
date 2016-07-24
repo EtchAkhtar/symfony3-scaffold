@@ -1,0 +1,7 @@
+AppBundle_index:
+    path:  /
+    defaults: { _controller: AppBundle:Front:index }
+    schemes:  [http]
+    requirements:
+        _method:  GET
+

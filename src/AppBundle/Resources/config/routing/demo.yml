@@ -1,0 +1,18 @@
+AppBundle_demo:
+    path:  /demo
+    defaults: { _controller: AppBundle:Demo:index }
+    schemes:  [HTTP]
+    methods:  [GET, POST]
+
+AppBundle_demo_modal:
+    path:  /demo/modal
+    defaults: { _controller: AppBundle:Demo:modal }
+    schemes:  [HTTP]
+    methods:  [GET]
+
+AppBundle_demo_delete:
+    path:  /demo
+    defaults: { _controller: AppBundle:Demo:delete }
+    schemes:  [HTTP]
+    methods:  [DELETE]
+

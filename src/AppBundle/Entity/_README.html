@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h3 id="updateentityclassandrepository">Update entity class and repository</h3>
+
+<p>php bin/console doctrine:generate:entities AppBundle/Entity/Demo</p>
+
+<h3 id="updatewithoutbackingup">Update without backing up</h3>
+
+<p>php bin/console doctrine:generate:entities AppBundle/Entity/Demo &#8211;no-backup</p>
+
+<h3 id="seewhatupdatingdbschemawillrun">See what updating db schema will run</h3>
+
+<p>php bin/console doctrine:schema:update &#8211;dump-sql</p>
+
+<h3 id="updatedbschema">Update db schema</h3>
+
+<p>php bin/console doctrine:schema:update &#8211;force</p>
+
+</body>
+</html>

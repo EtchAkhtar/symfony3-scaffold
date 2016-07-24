@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h1 id="symfony3scaffold">Symfony3 Scaffold</h1>
+
+<p>This codebase is a framework to use for starting a Symfony3 project.</p>
+
+<h3 id="version">Version</h3>
+
+<p>1.0.0</p>
+
+<hr />
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="configurations">Configurations</h3>
+
+<ul>
+<li>Routing/Security/Parameters is done via YAML</li>
+<li>Entity validation is done via annotations</li>
+<li>The routing config is moved to the src bundle and split into multiple files depending on site function</li>
+</ul>
+
+<h3 id="choosefrontendframeworks">Choose frontend frameworks</h3>
+
+<p>You can choose whether to use foundation, bootstrap, angular. Instructions below.</p>
+
+<h3 id="layoutincluded">Layout included</h3>
+
+<p>If using Bootstrap, a layout template is already included.</p>
+
+<h3 id="features">Features</h3>
+
+<h4 id="debugtoolbarrefreshonajax">Debug Toolbar refresh on AJAX</h4>
+
+<p>The debug toolbar will reload on an AJAX request if in dev mode (see site_dev.js)</p>
+
+<h4 id="popupnotificationsonajaxresponses">Popup notifications on AJAX responses</h4>
+
+<p>A popup will show in the top-right of the screen for any success/failure messages.</p>
+
+<h5 id="returningasuccess">Returning a success</h5>
+
+<pre><code>        return $utility-&gt;generateResponse(['content' =&gt; 'json'],
+            json_encode(
+                [
+                    'msg' =&gt; $this-&gt;renderView('AppBundle:Demo:modal.html.twig', [
+                    ])
+                ]
+            )
+        );
+</code></pre>
+
+<figure>
+<img src="readme/success.png?raw=true" alt="Success" />
+<figcaption>Success</figcaption>
+</figure>
+
+<h5 id="returningafailure">Returning a failure</h5>
+
+<pre><code>    $utility-&gt;generateError($errString);
+</code></pre>
+
+<p>This will return the message with a response code 403. There is a JavaScript event listener on AJAX responses that will look for this HTTP code and if found, display the error message in a friendly manner.</p>
+
+<figure>
+<img src="readme/failure.png?raw=true" alt="Failure" />
+<figcaption>Failure</figcaption>
+</figure>
+
+<h4 id="validationcode">Validation code</h4>
+
+<p>Three types of validation are in place to ensure data sanitization:</p>
+
+<ul>
+<li>HTLML5</li>
+<li>BootstrapValidator</li>
+<li>Symfony assertions</li>
+</ul>
+
+<h4 id="twigextension">Twig extension</h4>
+
+<p>Any twig filters or functions can be placed in &#8216;src\AppBundle\Extensions\Twig\TwigExtension.php&#8217;</p>
+
+<h4 id="utilityservice">Utility service</h4>
+
+<p>A service called &#8216;utility&#8217; has been provided to access commonly shared functions. Add your function into &#8216;src\AppBundle\Providers\Utility.php&#8217;</p>
+
+<h4 id="separateroutingconfigurationsforsitefunction">Separate routing configurations for site function</h4>
+
+<p>For easy maintenance the primary routing file is under &#8216;src\AppBundle\Resource\routing_index.yml&#8217;.</p>
+
+<p>All routes related to a subsection of the site can be placed into its own file.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="required">Required</h3>
+
+<p>CodeKit - https://incident57.com/codekit/</p>
+
+<h3 id="installation">Installation</h3>
+
+<ol>
+<li>Copy this locally and manage it with CodeKit</li>
+<li>Install this into a web server and setup a vhost for it</li>
+<li>Create your database and update app/config/parameters.yml</li>
+<li>Run &#8216;composer install&#8217; or &#8216;composer update&#8217; if you wish to update to latest versions (check composer.json for package info).</li>
+<li>Add to your own git repo for versioning.</li>
+</ol>
+
+<h3 id="addingip">Adding IP</h3>
+
+<p>By default Symfony requires you to explicity call app_dev.php for dev environments. The .htaccess file has been modified to detect your local IP and automatically server app_dev.php or app.php depending on the host.</p>
+
+<p>For this to work, please add your IP into .htaccess</p>
+
+<h3 id="activatingafrontendresponsiveframework">Activating a frontend responsive framework</h3>
+
+<p>This skeleton has the ability to work with both foundation and bootstrap.</p>
+
+<h4 id="activatingfoundation">Activating Foundation</h4>
+
+<ol>
+<li>Open web/bundles/app/js/vendor.js and ensure the lines are as follows:</li>
+</ol>
+
+<pre><code>// @dont=codekit-prepend &quot;partials/framework/_bootstrap.js&quot;
+// @codekit-prepend &quot;partials/framework/_foundation.js&quot;
+</code></pre>
+
+<ol>
+<li>Open web/bundles/app/scss/partials/_base.scss and uncomment the following:</li>
+</ol>
+
+<pre><code>@import 'framework_foundation';
+</code></pre>
+
+<ol>
+<li>Open web/bundles/app/less/partials/_base.less and comment the following:</li>
+</ol>
+
+<pre><code>//@import '_framework_bootstrap';
+</code></pre>
+
+<ol>
+<li>Modify partials/<em>foundation</em>settings.scss with any custom settings</li>
+<li>Comment out all components that aren&#8217;t required in partials/<em>foundation</em>includes.css</li>
+</ol>
+
+<h4 id="activatingbootstrap">Activating Bootstrap</h4>
+
+<ol>
+<li>Open web/bundles/app/js/vendor.js and ensure the lines are as follows:</li>
+</ol>
+
+<pre><code>// @codekit-prepend &quot;partials/framework/_bootstrap.js&quot;
+// @dont-codekit-prepend &quot;partials/framework/_foundation.js&quot;
+</code></pre>
+
+<ol>
+<li>Open web/bundles/app/less/partials/_base.less and uncomment the following:</li>
+</ol>
+
+<pre><code>@import '_framework_bootstrap';
+</code></pre>
+
+<ol>
+<li>Open web/bundles/app/scss/partials/_base.scss and comment the following:</li>
+</ol>
+
+<pre><code>//@import 'framework_foundation';
+</code></pre>
+
+<h4 id="activatingangularjs">Activating Angular JS</h4>
+
+<ol>
+<li>Open web/bundles/app/js/vendor.js and ensure the line is as follows:</li>
+</ol>
+
+<pre><code>// @codekit-prepend &quot;partials/framework/_angular.js&quot;
+</code></pre>
+
+<h4 id="activatingcompass">Activating Compass</h4>
+
+<ol>
+<li>Open web/bundles/app/scss/partials/_base.scss and uncomment the following:</li>
+</ol>
+
+<pre><code>@import 'compass';
+</code></pre>
+
+<h4 id="codekitsetup">CodeKit Setup</h4>
+
+<ul>
+<li>Update bower components then lock dependencies in bower.json</li>
+<li>Ensure CodeKit set to compress sass/js with sourcemap (and exclude 3rd party js files with many warnings).</li>
+<li>Enable autoprefixer/bless globally.</li>
+<li>Add server url for live browser refreshing on port 5757.</li>
+</ul>
+
+<h4 id="deletingdemocode">Deleting demo code</h4>
+
+<p>There is demo code to help you get started. If you don&#8217;t want this:</p>
+
+<p>Delete files in &#8216;src&#8217;:</p>
+
+<ul>
+<li>Controller\DemoController</li>
+<li>Entity\DemoPerson</li>
+<li>Resources\views\Demo</li>
+<li>Resources\config\routing\demo.yml</li>
+</ul>
+
+<p>Delete function from &#8216;web/bundle&#8217; in the following files:</p>
+
+<ul>
+<li>js\partials_modals.js</li>
+<li>js\partials_forms.js</li>
+<li>js\partials_formvalidation.js</li>
+</ul>
+
+<h2 id="directorystructure">Directory Structure</h2>
+
+<p>The files/directories installed by Symfony3 will not be discussed, only additions and modification</p>
+
+<h3 id="root">root</h3>
+
+<ul>
+<li>.bowerrc - Where to store bower components</li>
+<li>.editorconfig - Rules for saving source files</li>
+<li>.gitattributes - Normalize line endings for versioning</li>
+<li>.gitignore - What to remove from git</li>
+<li>bower.json - The packages/dependencies installed from bower</li>
+<li>composer.json / composer.lock - The packages/dependencies installed from packagist</li>
+<li>config.codekit - CodeKit is used as the build tool / task runner / watcher</li>
+<li>config.rb - compass configuration should you wish to activate it</li>
+<li>README.md - this file (also converted to HTML)</li>
+</ul>
+
+<h3 id="web">web</h3>
+
+<ul>
+<li>bundles/app - the assets for this app</li>
+<li>bundles/vendorunmanaged - any frontend libraries not found in bower</li>
+<li>browserconfig.xml - Configuration for handling MS tile icons</li>
+<li>crossdomain.xml - Cross-domain policy file</li>
+<li>humans.txt - Meet the team and the technologies used</li>
+<li>robots.txt - Crawler configuration</li>
+<li>favicon and other icons</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+	{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+
+	<h1>Buttons</h1>
+	<a class="btn btn-primary" href="#">Button 1</a>
+
+	<h1>Modal</h1>
+	<a href="{{ url('AppBundle_demo_modal') }}" id="demoModal">Click Me!</a>
+
+	<h1>Form</h1>
+	{% include 'AppBundle:_Forms:form.demo.html.twig' %}
+
+	<h1>Delete Content</h1>
+	<a href="{{ url('AppBundle_demo_delete') }}" id="demoDelete">Delete all records</a>
+
+	<h1>Table</h1>
+	<p>All people older than 18</p>
+	<table class="autoscroll display cell-border" width="50%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for person in people %}
+				<tr>
+					<td>{{ person.name }}</td>
+					<td>{{ person.age }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h1>Angular</h1>
+	<div ng-view></div>
+
+{% endblock %}

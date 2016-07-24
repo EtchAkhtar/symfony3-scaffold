@@ -1,0 +1,21 @@
+What is your name? <input type="text" ng-model="name">
+<p>Hello {{ name }}</p>
+<input ng-model="query" placeholder="Favorite fruit?">
+
+<h3>Fruits</h3>
+
+<table width="50%">
+	<thead>
+		<tr>
+			<th>Fruit</th>
+			<th>Taste</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-animate="'animate'" ng-repeat="item in fruits | filter: query | orderBy: 'name'">
+			<td>{{ item.name }}</td>
+			<td>{{ item.taste }}</td>
+		</tr>
+	</tbody>
+</table>
+
