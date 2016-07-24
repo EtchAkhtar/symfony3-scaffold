@@ -59,6 +59,14 @@ This will return the message with a response code 403.  There is a JavaScript ev
 
 ![Failure](readme/failure.png?raw=true)
 
+#### Testing
+
+PHPUnit is part of the Symfony3 framework by default.
+
+QUnit has been added for JavaScript development.
+
+![QUnit](readme/qunit.png?raw=true)
+
 #### Validation code
 
 Three types of validation are in place to ensure data sanitization:
